@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OdiGyan Firebase WebApp</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>OdiGyan</h1>
+      <nav>
+        <a href="#/">Home</a>
+        <a href="#/courses">Courses</a>
+        <a href="#/current-affairs">Current Affairs</a>
+      </nav>
+      <div id="authBox" class="auth-box"></div>
+    </header>
+
+    <main id="app" class="container"></main>
+
+    <template id="homeTpl">
+      <section class="card">
+        <h2>Firebase-powered OdiGyan</h2>
+        <p>This is a new webapp built from your app inspiration. UI is simplified and connected with Firebase config.</p>
+      </section>
+      <section class="card">
+        <h3>Live Banner</h3>
+        <div id="bannerArea">Loading banner…</div>
+      </section>
+    </template>
+
+    <template id="coursesTpl">
+      <section class="card">
+        <h2>Courses</h2>
+        <div id="courseList" class="grid"></div>
+      </section>
+    </template>
+
+    <template id="currentTpl">
+      <section class="card">
+        <h2>Current Affairs</h2>
+        <div id="caList"></div>
+      </section>
+    </template>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

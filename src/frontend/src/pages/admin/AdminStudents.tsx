@@ -85,7 +85,7 @@ export default function AdminStudents() {
     enabled: !!actor && isAdmin,
   });
 
-  // Fallback to II-based students
+  // Fallback to basic student records
   const studentsQuery = useQuery({
     queryKey: ["admin-students"],
     queryFn: async () => {
@@ -115,7 +115,7 @@ export default function AdminStudents() {
   const richProfiles: StudentPublicInfo[] = Array.isArray(profilesQuery.data)
     ? profilesQuery.data
     : [];
-  const iiStudents: StudentInfo[] = Array.isArray(studentsQuery.data)
+  const fallbackStudents: StudentInfo[] = Array.isArray(studentsQuery.data)
     ? studentsQuery.data
     : [];
   const hasRich = richProfiles.length > 0;
@@ -131,12 +131,12 @@ export default function AdminStudents() {
     );
   });
 
-  const filteredII = iiStudents.filter((s) => {
+  const filteredFallback = fallbackStudents.filter((s) => {
     if (!search) return true;
     return s.student.toString().toLowerCase().includes(search.toLowerCase());
   });
 
-  const totalCount = hasRich ? filteredRich.length : filteredII.length;
+  const totalCount = hasRich ? filteredRich.length : filteredFallback.length;
   const isLoading = profilesQuery.isLoading || studentsQuery.isLoading;
 
   return (
@@ -235,7 +235,7 @@ export default function AdminStudents() {
               </div>
             ))
           )
-        ) : filteredII.length === 0 ? (
+        ) : filteredFallback.length === 0 ? (
           <div
             className="text-center py-12 text-gray-400"
             data-ocid="admin.empty_state"
@@ -243,7 +243,7 @@ export default function AdminStudents() {
             No students enrolled yet.
           </div>
         ) : (
-          filteredII.map((s, idx) => (
+          filteredFallback.map((s, idx) => (
             <div
               key={s.student.toString()}
               className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex items-center gap-3"

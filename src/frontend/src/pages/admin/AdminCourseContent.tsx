@@ -31,7 +31,7 @@ import {
 import { motion } from "motion/react";
 import { useState } from "react";
 import { toast } from "sonner";
-import type { ContentFolder, ContentItem } from "../../backend.d.ts";
+import type { ContentFolder, ContentItem } from "../../types/content";
 import NotesRenderer from "../../components/NotesRenderer";
 import { useActor } from "../../hooks/useActor";
 import { useInternetIdentity } from "../../hooks/useInternetIdentity";

@@ -1,0 +1,15 @@
+:root { font-family: Inter, system-ui, Arial; color: #0f2d6b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f5f7fb; }
+.topbar { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:#fff; border-bottom:1px solid #dce4f2; position:sticky; top:0; }
+.topbar nav { display:flex; gap:12px; }
+.topbar a { text-decoration:none; color:#1d68e0; font-weight:600; }
+.container { max-width:900px; margin:20px auto; padding:0 12px; display:grid; gap:12px; }
+.card { background:#fff; border:1px solid #dde6f8; border-radius:14px; padding:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; }
+.course { border:1px solid #e4ebfa; border-radius:10px; padding:10px; }
+button { border:none; background:#1d68e0; color:#fff; padding:8px 12px; border-radius:8px; cursor:pointer; }
+button.secondary { background:#e8eefc; color:#0f2d6b; }
+.auth-box { display:flex; align-items:center; gap:8px; }
+.small { font-size: 12px; color:#47608f; }
+article { border-top:1px dashed #c8d5f0; padding-top:8px; margin-top:8px; }

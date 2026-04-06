@@ -1,5 +1,6 @@
 {
-  "name": "@caffeine/template-app",
+  "name": "odigyan-app",
+  "description": "OdiGyan Firebase-first monorepo",
   "type": "module",
   "engines": {
     "node": ">=16.0.0",
@@ -10,7 +11,10 @@
     "build": "pnpm -r --if-present run build",
     "typecheck": "pnpm -r --if-present run typecheck",
     "check": "pnpm -r --if-present run check",
-    "fix": "pnpm -r --if-present run fix"
+    "fix": "pnpm -r --if-present run fix",
+    "dev": "pnpm --filter odigyan-frontend dev",
+    "deploy:hosting": "firebase deploy --only hosting",
+    "deploy:functions": "firebase deploy --only functions"
   },
   "devDependencies": {
     "sharp": "^0.34.4"

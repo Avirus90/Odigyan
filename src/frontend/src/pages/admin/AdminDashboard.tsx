@@ -24,14 +24,11 @@ import { Label } from "../../components/ui/label";
 import { useActor } from "../../hooks/useActor";
 import { useInternetIdentity } from "../../hooks/useInternetIdentity";
 
-const ADMIN_PRINCIPAL =
-  "dv2k6-c3qh4-4k2v5-bmmkn-74l43-6li64-ofmes-zzlgi-jck4z-g64pp-wae";
-
 // ─── Admin Check Hook ────────────────────────────────────────────────────────────
 
 export function useAdminCheck() {
   const { actor } = useActor();
-  const { identity } = useInternetIdentity();
+  const { identity, isAdmin: isAdminFromAuth } = useInternetIdentity();
   const [isAdmin, setIsAdmin] = useState(() => {
     try {
       const cached = localStorage.getItem("admin_check");
@@ -41,11 +38,7 @@ export function useAdminCheck() {
           isAdminVal: boolean;
           expiry: number;
         };
-        if (
-          principal === ADMIN_PRINCIPAL &&
-          isAdminVal &&
-          Date.now() < expiry
-        ) {
+        if (principal === identity?.getPrincipal().toString() && isAdminVal && Date.now() < expiry) {
           return true;
         }
       }
@@ -63,11 +56,7 @@ export function useAdminCheck() {
           isAdminVal: boolean;
           expiry: number;
         };
-        if (
-          principal === ADMIN_PRINCIPAL &&
-          isAdminVal &&
-          Date.now() < expiry
-        ) {
+        if (principal === identity?.getPrincipal().toString() && isAdminVal && Date.now() < expiry) {
           return false;
         }
       }
@@ -106,27 +95,7 @@ export function useAdminCheck() {
           }
         }
 
-        if (principalStr === ADMIN_PRINCIPAL) {
-          await actor.assignCallerUserRole(
-            identity.getPrincipal(),
-            "admin" as never,
-          );
-          if (!cancelled) {
-            setIsAdmin(true);
-            setChecking(false);
-            localStorage.setItem(
-              "admin_check",
-              JSON.stringify({
-                principal: principalStr,
-                isAdminVal: true,
-                expiry: Date.now() + 30 * 24 * 60 * 60 * 1000,
-              }),
-            );
-          }
-          return;
-        }
-
-        const adminResult = await actor.isCallerAdmin();
+        const adminResult = isAdminFromAuth || (await actor.isCallerAdmin());
         if (!cancelled) {
           setIsAdmin(adminResult);
           setChecking(false);
@@ -150,7 +119,7 @@ export function useAdminCheck() {
     return () => {
       cancelled = true;
     };
-  }, [actor, identity]);
+  }, [actor, identity, isAdminFromAuth]);
 
   return { isAdmin, checking };
 }

@@ -11,7 +11,7 @@ import {
 import { motion } from "motion/react";
 import { useState } from "react";
 import { toast } from "sonner";
-import type { Course, CourseId } from "../../backend.d.ts";
+import type { Course, CourseId } from "../../types/content";
 import { useActor } from "../../hooks/useActor";
 import { useInternetIdentity } from "../../hooks/useInternetIdentity";
 import { useAdminCheck } from "./AdminDashboard";

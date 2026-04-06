@@ -109,8 +109,8 @@ export function clearSessionParameter(key: string): void {
  * @param paramName - The parameter to remove from the hash
  *
  * @example
- * // URL: https://app.com/#/dashboard?caffeineAdminToken=xxx&other=value
- * // After clearParamFromHash('caffeineAdminToken')
+ * // URL: https://app.com/#/dashboard?adminToken=xxx&other=value
+ * // After clearParamFromHash('adminToken')
  * // URL: https://app.com/#/dashboard?other=value
  */
 function clearParamFromHash(paramName: string): void {

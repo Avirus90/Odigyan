@@ -30,7 +30,7 @@ export default function Login() {
   const [tapCount, setTapCount] = useState(0);
   const lastTapTimeRef = useRef<number>(0);
   const [showSecretForm, setShowSecretForm] = useState(false);
-  const [showIIButton, setShowIIButton] = useState(false);
+  const [showGoogleButton, setShowGoogleButton] = useState(false);
   const [secretUsername, setSecretUsername] = useState("");
   const [secretPassword, setSecretPassword] = useState("");
   const [showSecretPw, setShowSecretPw] = useState(false);
@@ -47,7 +47,7 @@ export default function Login() {
   useEffect(() => {
     if (identity) {
       setShowSecretForm(false);
-      setShowIIButton(false);
+      setShowGoogleButton(false);
     }
   }, [identity]);
 
@@ -75,7 +75,7 @@ export default function Login() {
       secretPassword === stored.password
     ) {
       setShowSecretForm(false);
-      setShowIIButton(true);
+      setShowGoogleButton(true);
       setCredError("");
       setWrongAttempts(0);
     } else {
@@ -83,7 +83,7 @@ export default function Login() {
       setWrongAttempts(newAttempts);
       if (newAttempts >= 3) {
         setShowSecretForm(false);
-        setShowIIButton(false);
+        setShowGoogleButton(false);
         setTapCount(0);
         setCredError("");
         setWrongAttempts(0);
@@ -134,14 +134,14 @@ export default function Login() {
         className="mx-4 mb-6 rounded-3xl bg-white p-6 shadow-2xl"
         style={{ boxShadow: "0 32px 80px oklch(0.1 0.08 260 / 0.5)" }}
       >
-        {!showSecretForm && !showIIButton && (
+        {!showSecretForm && !showGoogleButton && (
           <div className="space-y-5" data-ocid="login.panel">
             <div className="text-center">
               <h2 className="font-bold text-xl text-gray-900 mb-1">
                 Welcome Back
               </h2>
               <p className="text-sm text-gray-500">
-                Sign in with your Internet Identity to continue
+                Sign in with Google to continue
               </p>
             </div>
 
@@ -164,14 +164,14 @@ export default function Login() {
               ) : (
                 <>
                   <GraduationCap className="h-5 w-5" />
-                  Sign in with Internet Identity
+                  Sign in with Google
                 </>
               )}
             </Button>
 
             <div className="bg-blue-50 rounded-2xl px-4 py-3">
               <p className="text-xs text-blue-700 leading-relaxed text-center">
-                New to OdiGyan? Sign in with Internet Identity and you will be
+                New to OdiGyan? Sign in with Google and you will be
                 asked to complete your profile automatically.
               </p>
             </div>
@@ -232,8 +232,8 @@ export default function Login() {
           </div>
         )}
 
-        {/* Internet Identity button after creds verified */}
-        {showIIButton && (
+        {/* Google login button after admin creds verification */}
+        {showGoogleButton && (
           <div data-ocid="login.modal">
             <Button
               className="w-full h-12 text-base gap-2 rounded-xl"
