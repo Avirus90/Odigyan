@@ -39,6 +39,7 @@ const firebaseConfig = {
     fallbackFirebaseConfig.messagingSenderId,
   ),
   appId: envOrDefault(import.meta.env.VITE_FIREBASE_APP_ID, fallbackFirebaseConfig.appId),
+  // Optional for analytics-enabled projects.
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 

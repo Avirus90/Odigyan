@@ -64,6 +64,8 @@ At repository root:
 - `pnpm deploy:hosting`
 - `pnpm deploy:functions`
 
+These scripts assume the Firebase-first setup and the `odigyan-frontend` workspace package name.
+
 ## Migration Notes
 
 See `docs/firebase-migration-plan.md` for:

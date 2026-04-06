@@ -1,5 +1,6 @@
 {
   "name": "odigyan-app",
+  "description": "OdiGyan Firebase-first monorepo",
   "type": "module",
   "engines": {
     "node": ">=16.0.0",
