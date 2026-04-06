@@ -51,9 +51,27 @@ This repository was originally exported from Caffeine with ICP/Canister based ba
    ```
 6. Build and deploy hosting.
    ```bash
-   pnpm --filter @caffeine/template-frontend build
+   pnpm --filter odigyan-frontend build
    firebase deploy --only hosting
    ```
+
+## Why README is visible instead of app?
+
+If you open the GitHub repository URL, GitHub always shows `README.md` (code view), not the running app.
+
+To open the frontend app:
+
+1. Build frontend output into `src/frontend/dist`:
+   ```bash
+   pnpm --filter odigyan-frontend build
+   ```
+2. Deploy Firebase Hosting:
+   ```bash
+   firebase deploy --only hosting
+   ```
+3. Open the Firebase Hosting URL shown after deploy (for example `https://odigyan-a5d08.web.app`).
+
+`firebase.json` is configured for SPA routing so all routes resolve through `index.html`.
 
 ## Scripts
 
@@ -63,6 +81,8 @@ At repository root:
 - `pnpm build`
 - `pnpm deploy:hosting`
 - `pnpm deploy:functions`
+
+These scripts assume the Firebase-first setup and the `odigyan-frontend` workspace package name.
 
 ## Migration Notes
 
