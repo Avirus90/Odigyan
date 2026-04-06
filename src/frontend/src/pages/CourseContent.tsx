@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
-import type { ContentFolder, ContentItem } from "../backend.d.ts";
+import type { ContentFolder, ContentItem } from "../types/content";
 import CurrentAffairsRenderer from "../components/CurrentAffairsRenderer";
 import MockTestViewer from "../components/MockTestViewer";
 import NotesRenderer from "../components/NotesRenderer";

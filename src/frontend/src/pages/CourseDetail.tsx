@@ -15,7 +15,7 @@ import { toast } from "sonner";
 import { useActor } from "../hooks/useActor";
 import { useStudentSession } from "../hooks/useStudentSession";
 
-const RAZORPAY_KEY = "rzp_live_SYADhzyhslVmtS";
+const RAZORPAY_KEY = import.meta.env.VITE_RAZORPAY_KEY_ID || "";
 
 const SECTIONS = [
   {
@@ -110,7 +110,7 @@ export default function CourseDetail() {
     enabled: !!actor,
   });
 
-  // Use studentId-based enrollment check (no Internet Identity needed)
+  // Use studentId-based enrollment check (Firebase profile based)
   const enrolledQuery = useQuery({
     queryKey: ["enrolled-student", studentSession?.studentId ?? ""],
     queryFn: async () => {
@@ -161,6 +161,10 @@ export default function CourseDetail() {
     }
 
     if (priceType === "paid" && price) {
+      if (!RAZORPAY_KEY) {
+        toast.error("Payment configuration missing.");
+        return;
+      }
       const loaded = await loadRazorpayScript();
       if (!loaded) {
         toast.error("Payment gateway failed to load. Please try again.");

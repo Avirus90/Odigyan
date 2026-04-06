@@ -7,9 +7,6 @@ import { useActor } from "../hooks/useActor";
 import { useInternetIdentity } from "../hooks/useInternetIdentity";
 import { useStudentSession } from "../hooks/useStudentSession";
 
-const ADMIN_PRINCIPAL =
-  "dv2k6-c3qh4-4k2v5-bmmkn-74l43-6li64-ofmes-zzlgi-jck4z-g64pp-wae";
-
 type Mode = "check" | "register" | "link" | "done";
 
 function MatchIndicator({ a, b }: { a: string; b: string }) {
@@ -22,7 +19,7 @@ function MatchIndicator({ a, b }: { a: string; b: string }) {
 }
 
 export default function StudentProfileModal() {
-  const { identity } = useInternetIdentity();
+  const { identity, isAdmin } = useInternetIdentity();
   const { actor } = useActor();
   const { studentSession, setStudentSession } = useStudentSession();
 
@@ -59,7 +56,7 @@ export default function StudentProfileModal() {
     if (principal.isAnonymous()) return;
 
     // Admin should never see the student profile popup
-    if (principal.toString() === ADMIN_PRINCIPAL) return;
+    if (isAdmin) return;
 
     setMode("check");
     setVisible(true);
@@ -86,13 +83,13 @@ export default function StudentProfileModal() {
         setMode("register");
       }
     })();
-  }, [identity, actor, studentSession, setStudentSession]);
+  }, [identity, actor, studentSession, setStudentSession, isAdmin]);
 
   // Admin should never see the student profile popup
   if (!visible || !identity || identity.getPrincipal().isAnonymous()) {
     return null;
   }
-  if (identity.getPrincipal().toString() === ADMIN_PRINCIPAL) {
+  if (isAdmin) {
     return null;
   }
 

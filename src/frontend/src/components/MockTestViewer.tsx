@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { AlertCircle, Loader2 } from "lucide-react";
-import type { ContentItem } from "../backend.d.ts";
+import type { ContentItem } from "../types/content";
 import MockTestRenderer from "./MockTestRenderer";
 
 interface MockTestViewerProps {

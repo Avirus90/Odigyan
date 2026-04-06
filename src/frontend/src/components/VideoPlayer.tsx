@@ -8,7 +8,7 @@ import {
   RotateCw,
 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { ContentItem } from "../backend.d.ts";
+import type { ContentItem } from "../types/content";
 
 function extractYouTubeId(url: string): string | null {
   const patterns = [
